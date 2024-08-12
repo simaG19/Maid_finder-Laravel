@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ProsController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,7 +16,9 @@ use App\Http\Controllers\ProsController;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/pros', [ProsController::class, 'index'])->name('pros.index');
 
-Route::get('/pros/create', [ProsController::class, 'create'])->name('pros.create');
-Route::post('/pros', [ProsController::class, 'store'])->name('pros.store');
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+require __DIR__.'/auth.php';
